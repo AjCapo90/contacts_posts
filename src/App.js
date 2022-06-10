@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login"
+import ContactList from "./components/ContactList"
+import {useState} from "react"
+import {Routes, Route} from "react-router-dom"
 
 function App() {
+
+  const [correctCredentials, setCorrectCredentials] = useState({
+    email: "ajcapo90@gmail.com",
+    password: "abc123"
+  })
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  function handleLogin() {
+    setIsLoggedIn(prevIsLoggedIn => !prevIsLoggedIn)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route exact path="/" element={
+        <Login 
+          correctCredentials={correctCredentials}
+          handleLogin={handleLogin}
+          isLoggedIn={isLoggedIn}
+        />} />
+      <Route path="/contact_list" element={<ContactList />} />
+    </Routes> 
+  )
 }
 
-export default App;
+export default App

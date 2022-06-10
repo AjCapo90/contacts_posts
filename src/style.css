@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CUSTOM PROPERTIES */
+
+:root {
+  --ff-primary: sans-serif;
+  --ff-secondary: monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --cl-light: #fff;
+  --cl-soft-theme: #F2F8FE;
+  --cl-theme: #269AFA;
+  --cl-accent: #FEEB00;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+  --fs-small: 0.675rem;
+}
+
+@media (min-width: 800px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
+  }
+}
+
+
+
+/* LOGIN */
+.login {
+  background-color: var(--cl-soft-theme);
+  height: 100vh;
+  color: var(--cl-theme);
+}
+
+.login--title {
+  text-align: center;
+  padding-block: 30px;
+  text-transform: uppercase;
+}
+
+.login--form {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 350px;
+}
+
+.login--input {
+  display: grid;
+  grid-template: 15px 50px / 1fr 1fr;
+  align-items: center;
+}
+
+.login--username_input, .login--username_wrong_input {
+  grid-column: 1 / -1;
+  height: 80%;
+  margin-bottom: 7px;
+  padding-left: 15px;
+  border: 1px solid var(--cl-theme);
+  color: var(--cl-theme);
+}
+
+.login--username_wrong_input:focus {
+  outline-color: red;
+}
+
+
+.login--required {
+  justify-self: end;
+}
+
+.login--label, .login--required {
+  font-size: var(--fs-small);
+}
+
+.login--submit, .login--submit_disabled {
+  width: 100%;
+  border: none;
+  height: 45px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  cursor: pointer;
+}
+
+.login--submit {
+  background-color: var(--cl-theme);
+  color: var(--cl-light);
+}
+
+.login--submit_disabled {
+  background-color: grey;
+  color: var(--cl-light);
+}
+

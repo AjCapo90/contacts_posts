@@ -5,12 +5,11 @@ import LoginInput from "./LoginInput"
 
 
 function Login(props) {
+
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
   })
-
-  const [isCorrectCredential, setIsCorrectCredential] = useState(false)
 
   const [checkEmail, setCheckEmail] = useState(false)
   const [checkPassword, setCheckPassword] = useState(false)
@@ -30,17 +29,7 @@ function Login(props) {
     passwordValidation()
   }, [userCredentials])
 
-  // CHECK CREDENTIALS AND CHANGE CONTROL BOOL
-  useEffect(() => {
-    if (userCredentials.email === props.correctCredentials.email &&
-      userCredentials.password === props.correctCredentials.password) {
-        setIsCorrectCredential(true)
-      } else {
-        setIsCorrectCredential(false)
-      }
-  }, [userCredentials])
-
-  // HANDLE INPUT CHANGE
+  // HANDLE CREDENTIALS CHANGE
   function handleChange(event) {
     const {name, value} = event.target
     setUserCredentials(prevCredentials => ({
@@ -48,9 +37,15 @@ function Login(props) {
       [name]: value
     }))
   }
+
   // HANDLE FORM SUBMIT
   function handleSubmit(event) {
     event.preventDefault()
+  }
+
+  // SAVE CREDENTIALS IN LOCAL STORAGE WHEN LOGIN IN CLICKED
+  function setLocalStorage() {
+    localStorage.setItem('token', JSON.stringify(userCredentials))
   }
 
   return (
@@ -69,10 +64,12 @@ function Login(props) {
           userCredentials={userCredentials.password}
           isChecked={checkPassword}
         />
-        <Link to={isCorrectCredential ? "/contact_list" : "/"}>
+        <Link to={"/contact_list"}>
           <button 
             className={checkEmail && checkPassword ? "login--submit" : "login--submit_disabled"} 
-            disabled={!checkEmail && !checkPassword}>
+            disabled={!checkEmail && !checkPassword}
+            onClick={setLocalStorage}
+            >
           enter
           </button>
         </Link>

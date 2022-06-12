@@ -104,3 +104,86 @@
   color: var(--cl-light);
 }
 
+
+/* CONTACT LIST SECTION */
+
+.contact_list {
+  margin-bottom: 90px;
+}
+
+.contact_list--title {
+  margin-block: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--cl-theme);
+}
+
+.contact_list--item {
+  background-color: var(--cl-soft-theme);
+  max-width: 350px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.contact_list--initials {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--cl-theme);
+  color: var(--cl-light);
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.contact_list--info {
+  color: var(--cl-theme)
+}
+
+.contact_list--name {
+  font-weight: var(--fw-bold);
+}
+
+/* MENU */
+
+.menu {
+  background-color: var(--cl-theme);
+  overflow: hidden;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-weight: var(--fw-bold);
+  height: 60px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.menu--contacts, .menu--posts, .menu--logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+}
+
+.menu--contacts, .menu--posts {
+  background-color: var(--cl-theme);
+  color: var(--cl-light);
+}
+
+.disabled {
+  opacity: 0.25;
+}
+
+.menu--logout {
+  background-color: var(--cl-accent);
+  color: var(--cl-theme);
+}

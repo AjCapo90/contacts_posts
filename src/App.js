@@ -1,14 +1,10 @@
 import Login from "./components/Login"
 import ContactList from "./components/ContactList"
+import ContactDetail from "./components/ContactDetail"
 import {useState} from "react"
 import {Routes, Route} from "react-router-dom"
 
 function App() {
-
-  const [correctCredentials, setCorrectCredentials] = useState({
-    email: "ajcapo90@gmail.com",
-    password: "abc123"
-  })
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -20,11 +16,11 @@ function App() {
     <Routes>
       <Route exact path="/" element={
         <Login 
-          correctCredentials={correctCredentials}
           handleLogin={handleLogin}
           isLoggedIn={isLoggedIn}
         />} />
-      <Route path="/contact_list" element={<ContactList />} />
+      <Route exact path="/contact_list" element={<ContactList />} />
+      <Route path="/contact_list/:contactId" element={<ContactDetail />} />
     </Routes> 
   )
 }

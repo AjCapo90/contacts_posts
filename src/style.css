@@ -22,18 +22,22 @@
   --fs-h2: 2.25rem;
   --fs-h3: 1.25rem;
   --fs-body: 1rem;
+  --fs-little-body: 0.85rem;
   --fs-small: 0.675rem;
 }
 
 @media (min-width: 800px) {
   :root {
     --fs-h1: 4.5rem;
-    --fs-h2: 3.75rem;
+    --fs-h2: 2.5rem;
     --fs-h3: 1.5rem;
     --fs-body: 1.125rem;
   }
 }
 
+body {
+  color: var(--cl-theme)
+}
 
 
 /* LOGIN */
@@ -118,10 +122,18 @@
   color: var(--cl-theme);
 }
 
+.contact_list--items {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .contact_list--item {
   background-color: var(--cl-soft-theme);
+  width: 350px;
   max-width: 350px;
-  margin: 20px auto;
+  margin-block: 10px;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -186,4 +198,57 @@
 .menu--logout {
   background-color: var(--cl-accent);
   color: var(--cl-theme);
+}
+
+/* CONTACT DETAILS */
+
+.contact_detail {
+  max-width: 350px;
+  margin: 0 auto;
+  margin-bottom: 85px;
+}
+
+.contact_detail--title {
+  text-align: center;
+  margin-block: 20px;
+}
+
+.contact_detail--initials {
+  margin: 10px auto;
+  width: 90px;
+  height: 90px;
+  font-size: var(--fs-h2)
+}
+
+/* CONTACT'S POSTS */
+
+.contact_posts {
+  margin-block: 20px;
+}
+
+.contact_post {
+  width: 350px;
+  height: 130px;
+  background: var(--cl-soft-theme);
+  margin-block: 20px;
+  padding: 10px;
+}
+
+.contact_post--body {
+  margin-top: 10px;
+  font-size: var(--fs-little-body);
+}
+
+/* POSTS LIST */
+
+.posts_list {
+  max-width: 350px;
+  margin: 0 auto;
+  margin-bottom: 85px;
+}
+
+.post_list--title {
+  text-align: center;
+  text-transform: uppercase;
+  margin-block: 30px;
 }

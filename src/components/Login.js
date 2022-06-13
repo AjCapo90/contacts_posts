@@ -2,6 +2,7 @@
 import {Link} from "react-router-dom"
 import {useEffect, useState} from "react"
 import LoginInput from "./LoginInput"
+import {emailValidation, lengthValidation} from "../utils/Functions"
 
 
 function Login(props) {
@@ -14,19 +15,10 @@ function Login(props) {
   const [checkEmail, setCheckEmail] = useState(false)
   const [checkPassword, setCheckPassword] = useState(false)
 
-  function emailValidation() {
-    const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-      regex.test(userCredentials.email) ? setCheckEmail(true) : setCheckEmail(false)
-  }
-  
-  function passwordValidation() {
-      userCredentials.password.length >= 4 ? setCheckPassword(true) : setCheckPassword(false)
-  }
-
   // CHECK INPUT CONDITIONS 
   useEffect(() => {
-    emailValidation()
-    passwordValidation()
+    emailValidation(userCredentials.email, setCheckEmail)
+    lengthValidation(userCredentials.password, 4, setCheckPassword)
   }, [userCredentials])
 
   // HANDLE CREDENTIALS CHANGE
@@ -54,15 +46,19 @@ function Login(props) {
       <form className="login--form" onSubmit={handleSubmit}>
         <LoginInput 
           type="email"
+          name="email"
           handleChange={handleChange}
           userCredentials={userCredentials.email}
           isChecked={checkEmail}
+          isRequired={true}
         />
         <LoginInput 
           type="password"
+          name="password"
           handleChange={handleChange}
           userCredentials={userCredentials.password}
           isChecked={checkPassword}
+          isRequired={true}
         />
         <Link to={"/contact_list"}>
           <button 

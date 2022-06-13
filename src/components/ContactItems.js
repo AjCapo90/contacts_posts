@@ -1,13 +1,10 @@
 import {Link} from "react-router-dom"
+import {getInitials} from "../utils/Functions"
 
 function ContactItems(props) {
-   
-  function getInitials(name) {
-    return name.split(" ").map(el => el.charAt(0))
-  }
   
   return (
-    <Link to={`/contact_list/${props.id}`}>
+    <Link to={`/contact_list/${props.id}`} style={{textDecoration: 'none'}}>
       <div className="contact_list--item">
         <div className="contact_list--initials">{getInitials(props.name)}</div>
         <div className="contact_list--info">

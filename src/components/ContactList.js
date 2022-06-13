@@ -25,7 +25,9 @@ function ContactList() {
   return (
     <section className="contact_list">
       <h1 className="contact_list--title">Contacts</h1>
-      {usersItems}
+      <div className="contact_list--items">
+        {usersItems}
+      </div>
       <Menu 
         isInContactSection={isInContactSection}
       />

@@ -1,10 +1,15 @@
 import {Link} from "react-router-dom"
 
 function Menu(props) {
+
+  function logout() {
+    localStorage.removeItem('token')
+  }
+
   return(
     <div className="menu">
       <button 
-        className="menu--contacts">
+        className={!props.isInContactSection ? "menu--contacts disabled" : "menu--contacts"}>
         <Link to="/contact_list" style={{textDecoration: 'none'}}>
         Contacts
         </Link>
@@ -17,7 +22,13 @@ function Menu(props) {
         Posts
         </Link>
       </button>
-      <button className="menu--logout">Logout</button>
+      <button 
+        className="menu--logout"
+        onClick={logout}>
+        <Link to="/" style={{textDecoration: 'none'}}>
+          Logout
+        </Link>
+      </button>
     </div>
   )
 }

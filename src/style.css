@@ -252,3 +252,36 @@ body {
   text-transform: uppercase;
   margin-block: 30px;
 }
+
+/* POST DETAILS */
+
+.post_detail {
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+.post_detail--title {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.post_comments {
+  background-color: var(--cl-soft-theme);
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 85px;
+}
+
+.post_comment {
+  max-width: 350px;
+  background-color: var(--cl-light);
+  margin: 20px auto;
+  padding: 10px;
+  height: 130px;
+}
+
+.post_comment--body {
+  font-size: var(--fs-little-body);
+  margin-top: 10px;
+}

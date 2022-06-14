@@ -44,8 +44,6 @@ function ContactDetail(props) {
       }))))
     }, [])
 
-  console.log(thisContactPosts)
-
   useEffect(() => {
     emailValidation(thisContact.email, setCheckEmail)
     lengthValidation(thisContact.name, 6, setCheckLength)

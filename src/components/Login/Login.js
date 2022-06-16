@@ -2,7 +2,7 @@
 import {Link} from "react-router-dom"
 import {useEffect, useState} from "react"
 import LoginInput from "./LoginInput"
-import {emailValidation, lengthValidation} from "../utils/Functions"
+import {emailValidation, lengthValidation} from "../../utils/Functions"
 
 
 function Login(props) {
@@ -35,8 +35,8 @@ function Login(props) {
     event.preventDefault()
   }
 
-  // SAVE CREDENTIALS IN LOCAL STORAGE WHEN LOGIN IN CLICKED
-  function setLocalStorage() {
+  // SAVE CREDENTIALS IN LOCAL STORAGE WHEN LOGIN IN CLICKED & CHANGE STATE IN APP "ISLOGGEDIN"
+  function login() {
     localStorage.setItem('token', JSON.stringify(userCredentials))
     props.handleLogin()
   }
@@ -65,7 +65,7 @@ function Login(props) {
           <button 
             className={checkEmail && checkPassword ? "login--submit" : "login--submit_disabled"} 
             disabled={!checkEmail && !checkPassword}
-            onClick={setLocalStorage}
+            onClick={login}
             >
           enter
           </button>

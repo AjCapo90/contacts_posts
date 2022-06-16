@@ -1,12 +1,12 @@
 import {useState, useEffect} from "react"
 import ContactItems from "./ContactItems"
-import Menu from "./Menu"
+import Menu from "../Menu/Menu"
 
 function ContactList(props) {
-  console.log(props)
+
   const [users, setUsers] = useState([])
-  const [isInContactSection, setIsInContactSection] = useState(true)
-  // GET DATA
+
+  // GET USERS DATA
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
@@ -30,7 +30,7 @@ function ContactList(props) {
         {usersItems}
       </div>
       <Menu 
-        isInContactSection={isInContactSection}
+        isInContactSection={true}
         handleLogout={props.handleLogin}
       />
     </section>

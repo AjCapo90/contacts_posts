@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom"
-import {getInitials} from "../utils/Functions"
+import {getInitials} from "../../utils/Functions"
 
 function ContactItems(props) {
   

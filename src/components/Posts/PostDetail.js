@@ -1,8 +1,8 @@
 import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
-import ContactItems from "./ContactItems"
+import ContactItems from "../Contacts/ContactItems"
 import PostComments from "./PostComments"
-import Menu from "./Menu"
+import Menu from "../Menu/Menu"
 
 function PostDetail(props) {
   const {postId} = useParams()
@@ -18,18 +18,19 @@ function PostDetail(props) {
   })
   const [thisComments, setThisComments] = useState([])
 
+  // FETCH THE CORRECT POST
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(res => res.json())
       .then(data => setThisPost(data))
   }, [])
 
+  // ASSOCIATE THE CORRECT USER TO THE POST
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/`)
       .then(res => res.json())
       .then(data => {
         const user = data.find(el => el.id === thisPost.userId)
-        console.log(user)
         setThisUser({
           id: user.id,
           name: user.name,
@@ -41,12 +42,14 @@ function PostDetail(props) {
       })
   }, [thisPost])
 
+  // FETCH COMMENTS TO THE POST
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
       .then(res => res.json())
       .then(data => setThisComments(data))
   }, [])
 
+  // RENDER COMMENTS
   const comments = thisComments.map(comment => (
     <PostComments 
       key={comment.id}

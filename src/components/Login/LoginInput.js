@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import {capitalizeFirstLetter} from "../utils/Functions"
+import {capitalizeFirstLetter} from "../../utils/Functions"
 
 function LoginInput(props) {
 

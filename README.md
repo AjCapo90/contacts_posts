@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Qwentes Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Premise
 
-## Available Scripts
+Developing a portal that has the following pages:
+- login
+- contact list
+- contact detail
+- post list
+- post detail
 
-In the project directory, you can run:
+## Login
+The portal provides a fake login, the required fields for authentication are:
+- email - checking that it is a valid email
+- password - minimum 4 characters
 
-### `npm start`
+If the fields are not valid, the button must not be enabled and the input in error must have a red border.
+If the fields are valid, set a `token` key in the localStorage with a value of your choice and redirect to the contact list page.
+After logging in, a *logout* button will always be visible at the bottom right which will delete the `token` in the localStorage and bring the user back to login.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contact list
+Users must be taken via an http call in GET: `https://jsonplaceholder.typicode.com/users`.
+Each user must show:
+- Full name
+- Street
+- City
+- Initials of the name and surname *(Ex: if the name is Mario Rossi, the initials will be MR)*
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Contact detail
+The user detail is obtained through an http call in GET: `https://jsonplaceholder.typicode.com/users/{userId}`.
+The page must show a form that allows the modification of some user information:
+- Name - minimum 6 characters
+- email - checking that it is a valid email
+- Company Name
 
-### `npm test`
+The required fields must be validated and must behave like the login in case of an error. The same goes for the form button.
+Once the form is valid, the button is enabled and upon click a PATCH call must start: `https://jsonplaceholder.typicode.com/users/{userId}` passing as payload.
+```js
+{
+	name: "<form value>",
+	email: "<form value>",
+	company: {
+		name: "<form value>"
+	}
+}
+```
+Obviously the PATCH call will not really change the data since the APIs are only placeholders, the important thing is to send the payload and have a 200 as a response.
+Below the form you must see the posts created by the user we are viewing, they can be obtained by making an http call in GET: `https://jsonplaceholder.typicode.com/posts?userId={userId}`
+Each post must show:
+- Post title
+- Post body
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Post list
+This is a simple list of posts, the data to be displayed is obtained by making an http call in GET: `https://jsonplaceholder.typicode.com/posts`.
+Each post must show:
+- Post title
+- Post body
 
-### `npm run build`
+## Post detail
+The information to be shown in detail is:
+- Post title
+- Post body
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Available via http call in GET: `https://jsonplaceholder.typicode.com/posts/{postId}`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The author of the post with the information shown in the contact list, available via http call in GET: `https://jsonplaceholder.typicode.com/users/{userId}`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A list of comments, where each comment must show
+- Comment name
+- Comment body
 
-### `npm run eject`
+Available via http call in GET: `https://jsonplaceholder.typicode.com/comments?postId={postId}`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Plus
+- Make the modules lazy (lazy routes) so that you download the module only when you actually need it
+- Add the login control within the Route Guards so as to correctly block the user in case he tries to access sections via URL even if he is not logged in
+- Using reactive forms

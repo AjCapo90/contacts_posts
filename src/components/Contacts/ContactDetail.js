@@ -1,9 +1,9 @@
 import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
-import LoginInput from "./LoginInput"
+import LoginInput from "../Login/LoginInput"
 import ContactPosts from "./ContactPosts"
-import Menu from "./Menu"
-import {emailValidation, lengthValidation, getInitials} from "../utils/Functions"
+import Menu from "../Menu/Menu"
+import {emailValidation, lengthValidation, getInitials} from "../../utils/Functions"
 
 
 function ContactDetail(props) {
@@ -21,6 +21,7 @@ function ContactDetail(props) {
   const [checkEmail, setCheckEmail] = useState(false)
   const [checkLength, setCheckLength] = useState(false)
 
+  // FETCH CONTACT'S INFORMATION
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/${contactId}`)
       .then(res => res.json())
@@ -44,11 +45,13 @@ function ContactDetail(props) {
       }))))
     }, [])
 
+  // CHECK EMAIL & NAME LENGTH
   useEffect(() => {
     emailValidation(thisContact.email, setCheckEmail)
     lengthValidation(thisContact.name, 6, setCheckLength)
   }, [thisContact])
 
+  // SAVE MODIFIED INPUT IN STATE
   function handleChange(event) {
     const {name, value} = event.target
     setThisContact(prevContact => ({
@@ -57,7 +60,7 @@ function ContactDetail(props) {
     }))
   }
 
-  // HANDLE FORM SUBMIT
+  // HANDLE FORM SUBMIT WITH PATCH METHOD
   function handleSubmit(event) {
     event.preventDefault()
     const requestOptions = {
@@ -73,6 +76,7 @@ function ContactDetail(props) {
 
   const postsElements = thisContactPosts.map(el => (
     <ContactPosts 
+      key={el.id}
       title={el.title}
       body={el.body}
       id={el.id}
@@ -111,7 +115,7 @@ function ContactDetail(props) {
         />
         <button
           className={checkEmail && checkLength ? "login--submit" : "login--submit_disabled"} 
-          disabled={!checkEmail && !checkLength}
+          disabled={!checkEmail || !checkLength}
           >
           Save
         </button>

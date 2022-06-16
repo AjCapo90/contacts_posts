@@ -2,6 +2,7 @@ import {Link} from "react-router-dom"
 
 function Menu(props) {
 
+  // HANDLE LOGOUT
   function logout() {
     localStorage.removeItem('token')
     props.handleLogout()
@@ -17,7 +18,6 @@ function Menu(props) {
       </button>
       <button 
         className={props.isInContactSection ? "menu--posts disabled" : "menu--posts"}
-        // disabled={props.isInContactSection ? true : false}
         > 
         <Link to="/post_list" style={{textDecoration: 'none'}}>
         Posts

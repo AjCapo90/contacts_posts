@@ -1,15 +1,18 @@
 import {useState, useEffect} from "react"
-import ContactPost from "./ContactPosts"
-import Menu from "./Menu"
+import ContactPost from "../Contacts/ContactPosts"
+import Menu from "../Menu/Menu"
 
 function PostList(props) {
   const [posts, setPosts] = useState([])
+
+  // FETCH POSTS LIST
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(res => res.json())
       .then(data => setPosts(data.map(obj => obj)))
   }, [])
   
+  // RENDER POSTS
   const postsElements = posts.map(el => (
     <ContactPost 
       key={el.id}

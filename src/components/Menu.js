@@ -4,6 +4,7 @@ function Menu(props) {
 
   function logout() {
     localStorage.removeItem('token')
+    props.handleLogout()
   }
 
   return(

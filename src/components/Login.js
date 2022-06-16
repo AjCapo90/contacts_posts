@@ -38,6 +38,7 @@ function Login(props) {
   // SAVE CREDENTIALS IN LOCAL STORAGE WHEN LOGIN IN CLICKED
   function setLocalStorage() {
     localStorage.setItem('token', JSON.stringify(userCredentials))
+    props.handleLogin()
   }
 
   return (

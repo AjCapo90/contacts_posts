@@ -2,7 +2,8 @@ import {useState, useEffect} from "react"
 import ContactItems from "./ContactItems"
 import Menu from "./Menu"
 
-function ContactList() {
+function ContactList(props) {
+  console.log(props)
   const [users, setUsers] = useState([])
   const [isInContactSection, setIsInContactSection] = useState(true)
   // GET DATA
@@ -30,6 +31,7 @@ function ContactList() {
       </div>
       <Menu 
         isInContactSection={isInContactSection}
+        handleLogout={props.handleLogin}
       />
     </section>
 

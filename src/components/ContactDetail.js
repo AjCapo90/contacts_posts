@@ -122,6 +122,7 @@ function ContactDetail(props) {
     </section>
     <Menu 
       isInContactSection={true}
+      handleLogout={props.handleLogin}
     />
     </>
   )

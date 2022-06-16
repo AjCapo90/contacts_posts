@@ -71,7 +71,9 @@ function PostDetail(props) {
       <section className="post_comments">
         {comments}
       </section>
-      <Menu />
+      <Menu 
+        handleLogout={props.handleLogin}
+      />
     </>
   )
 }

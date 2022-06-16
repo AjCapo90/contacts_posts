@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import ContactPost from "./ContactPosts"
 import Menu from "./Menu"
 
-function PostList() {
+function PostList(props) {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -26,7 +26,9 @@ function PostList() {
       <h2 className="post_list--title">Posts</h2>
       {postsElements}
     </section>
-    <Menu />
+    <Menu 
+      handleLogout={props.handleLogin}
+    />
     </>
   )
 }

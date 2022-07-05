@@ -43,7 +43,7 @@ function Login(props) {
 
   return (
     <section className="login">
-      <h1 className="login--title">Login</h1>
+      <h1 className="login--title">Menu</h1>
       <form className="login--form" onSubmit={handleSubmit}>
         <LoginInput 
           type="email"
@@ -67,7 +67,7 @@ function Login(props) {
             disabled={!checkEmail && !checkPassword}
             onClick={login}
             >
-          enter
+          login
           </button>
         </Link>
       </form>
